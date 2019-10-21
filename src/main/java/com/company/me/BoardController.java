@@ -29,6 +29,7 @@ public class BoardController {
 
 	private BoardService service;
 	
+	
 	//게시글 등록
 	@PostMapping(value="/new",
 			consumes = "application/json",

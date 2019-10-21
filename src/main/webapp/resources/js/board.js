@@ -80,6 +80,7 @@ var boardService = (function(){
 	
 	function get(bno, callback, error){
 		
+		console.log(bno);
 		$.get("/board/" + bno + ".json", function(result){
 			if(callback){
 				callback(result);
