@@ -2,6 +2,7 @@ package com.company.service;
 
 import java.util.List;
 
+import com.company.domain.BoardPageDto;
 import com.company.domain.BoardVo;
 import com.company.domain.Criteria;
 
@@ -16,4 +17,8 @@ public interface BoardService {
 	public int remove(int bno);
 	
 	public List<BoardVo> getList(Criteria cri);
+	
+	public int getTotalCount(Criteria cri);
+	
+	public BoardPageDto getListPage(Criteria cri);
 }

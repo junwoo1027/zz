@@ -27,15 +27,15 @@ public class MapperTest {
 //		log.info(mapper);
 //	}
 	
-	@Test
-	public void insertTest() {
-		BoardVo board = new BoardVo();
-			board.setTitle("헬로");
-			board.setContent("hoho");
-			board.setWriter("jun");
-		
-		mapper.insert(board);
-	}
+//	@Test
+//	public void insertTest() {
+//		BoardVo board = new BoardVo();
+//			board.setTitle("헬로");
+//			board.setContent("hoho");
+//			board.setWriter("jun");
+//		
+//		mapper.insert(board);
+//	}
 
 //	@Test
 //	public void readTest() {
@@ -62,12 +62,24 @@ public class MapperTest {
 //		log.info("count: " + count);
 //	}
 	
+	//게시글 페이징 테스트
 //	@Test
 //	public void pageTest() {
 //		Criteria cri = new Criteria();
+//		cri.setPageNum(3);
+//		cri.setAmount(10);
 //		
 //		List<BoardVo> list = mapper.getListWithPaging(cri);
 //		
-//		list.forEach(board -> log.info(board));
+//		for(BoardVo board : list) {
+//			log.info(board.getBno()+ ":" + board.getTitle());
+//		}
 //	}
+
+	@Test
+	public void getTotalCountTest() {
+		Criteria cri = new Criteria();
+		Integer totalCount = mapper.getTotalCount(cri);
+		log.info("totalCount : " + totalCount.toString());
+	}
 }

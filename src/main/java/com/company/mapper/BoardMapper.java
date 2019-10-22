@@ -18,4 +18,8 @@ public interface BoardMapper {
 	public int update(BoardVo board);
 	
 	public List<BoardVo> getListWithPaging(@Param("cri") Criteria cri);
+	
+	public List<BoardVo> getList(@Param("cri") Criteria cri);
+	
+	public int getTotalCount(Criteria cri);
 }

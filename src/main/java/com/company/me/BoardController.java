@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.domain.BoardPageDto;
 import com.company.domain.BoardVo;
 import com.company.domain.Criteria;
+import com.company.domain.PageDto;
 import com.company.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -52,14 +55,14 @@ public class BoardController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<BoardVo>> getList(@PathVariable("page") int page){
+	public ResponseEntity<BoardPageDto> getList(@PathVariable("page") int page){
 		
 		log.info("getList....");
 		Criteria cri = new Criteria(page, 10);
 		
 		log.info(cri);
 		
-		return new ResponseEntity<>(service.getList(cri), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri), HttpStatus.OK);
 	}
 	
 	//게시글 조회

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.domain.BoardPageDto;
 import com.company.domain.BoardVo;
 import com.company.domain.Criteria;
 import com.company.mapper.BoardMapper;
@@ -44,4 +45,13 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getListWithPaging(cri);
 	}
 
+	@Override
+	public int getTotalCount(Criteria cri) {
+		return mapper.getTotalCount(cri);
+	}
+
+	@Override
+	public BoardPageDto getListPage(Criteria cri) {
+		return new BoardPageDto(mapper.getTotalCount(cri), mapper.getListWithPaging(cri));
+	}
 }
