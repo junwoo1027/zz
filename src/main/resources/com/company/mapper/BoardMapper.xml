@@ -30,7 +30,9 @@
 	select
 		bno, title, content, writer, regdate, updatedate, fix, replyCnt
 	from article
-	where bno > 0
+		where bno > 0
+		order by bno desc
+		limit #{cri.pageStart}, #{cri.amount}
 </select>
 
 

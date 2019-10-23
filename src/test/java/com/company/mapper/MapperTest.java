@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.company.domain.BoardVo;
 import com.company.domain.Criteria;
+import com.company.domain.ReplyVo;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -20,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class MapperTest {
 
 	@Setter(onMethod_ = {@Autowired})
-	private BoardMapper mapper;
+	private ReplyMapper mapper;
 	
 //	@Test
 //	public void testMapper() {
@@ -29,57 +30,53 @@ public class MapperTest {
 	
 //	@Test
 //	public void insertTest() {
-//		BoardVo board = new BoardVo();
-//			board.setTitle("헬로");
-//			board.setContent("hoho");
-//			board.setWriter("jun");
+//		ReplyVo reply = new ReplyVo();
+//		reply.setBno(55);
+//		reply.setReply("GGG");
+//		reply.setReplyer("BBB");
+//	
 //		
-//		mapper.insert(board);
+//		mapper.insert(reply);
 //	}
 
 //	@Test
 //	public void readTest() {
 //		int bno =1;
-//		BoardVo board= new BoardVo();
+//		ReplyVo board= new ReplyVo();
 //		log.info(mapper.read(bno));
 //	}
 	
 //	@Test
 //	public void deleteTest() {
-//		int bno=2;
-//		BoardVo board = new BoardVo();
+//		int bno=1;
+//		ReplyVo board = new ReplyVo();
 //		mapper.delete(bno);
 //	}
 	
 //	@Test
 //	public void testUpdate() {
-//		int bno=1;
-//		BoardVo board = mapper.read(bno);
-//		board.setTitle("updateTitle");
-//		board.setContent("updateContent");
+//		int bno=2;
+//		ReplyVo board = mapper.read(bno);
+//		board.setReply("updateTitle");
+//		board.setReplyer("updateContent");
 //		int count = mapper.update(board);
 //		
 //		log.info("count: " + count);
 //	}
 	
-	//게시글 페이징 테스트
-//	@Test
-//	public void pageTest() {
-//		Criteria cri = new Criteria();
-//		cri.setPageNum(3);
-//		cri.setAmount(10);
-//		
-//		List<BoardVo> list = mapper.getListWithPaging(cri);
-//		
-//		for(BoardVo board : list) {
-//			log.info(board.getBno()+ ":" + board.getTitle());
-//		}
-//	}
-
 	@Test
-	public void getTotalCountTest() {
-		Criteria cri = new Criteria();
-		Integer totalCount = mapper.getTotalCount(cri);
-		log.info("totalCount : " + totalCount.toString());
+	public void pageTest() {
+		Criteria cri = new Criteria(2, 10);
+		
+		List<ReplyVo> replies = mapper.getListWithPaging(cri, 55);
+		
+		replies.forEach(reply -> log.info(reply));
 	}
+
+//	@Test
+//	public void getTotalCountTest() {
+//		Criteria cri = new Criteria();
+//		Integer totalCount = mapper.getCountByBno(55);
+//		log.info("totalCount : " + totalCount.toString());
+//	}
 }

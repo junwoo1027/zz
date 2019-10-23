@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybits.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.company.mapper.ReplyMapper">
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="rno">
+		insert into comment(bno, reply, replyer)
+		values(#{bno}, #{reply}, #{replyer})
+	</insert>
+	
+	<select id ="read" resultType="com.company.domain.ReplyVo">
+		select * from comment where rno = #{rno}	
+	</select>
+	
+	<delete id="delete">
+		delete from comment where rno = #{rno}
+	</delete>
+	
+	<update id="update">
+		update comment set reply = #{reply}, replyer = #{replyer}, updateDate = now() where rno = #{rno}
+	</update>
+	
+	<select id="getListWithPaging" resultType="com.company.domain.ReplyVo">
+		select rno, bno, reply, replyer, replyDate, updateDate
+		from comment
+		where bno = #{bno}
+		order by rno asc
+		limit #{cri.pageStart}, #{cri.amount}
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+	<![CDATA[
+	select count(rno) from comment where bno = #{bno}
+	]]>
+	</select>
+</mapper>
